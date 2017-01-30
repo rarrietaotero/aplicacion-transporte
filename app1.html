@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" >
+	<title>Mi primera App</title>
+
+	<link rel="stylesheet" type="text/css" href="jqm/jquery.mobile-1.4.5.css">
+	<script type="text/javascript" src="jqm/jquery.js"></script>
+	<script type="text/javascript" src="jqm/jquery.mobile-1.4.5.js"></script>
+
+</head>
+
+<body>
+<div id="homepage" data-role="page">
+	<div data-role="header">
+		<h1>Realiza tu pedido</h1>
+		<p align="center">Elige el tipo de carroceria</p>
+		<div>
+			<img src="tractomula_estaca.jpg" width="420" height="200" />
+		</div>
+	</div>
+	
+	<div data-role="content"> 
+		<p align="center"><strong>Tipo de Carga</strong></p>
+		<select name="tipo" data-native-menu="false">
+   			<option> Nombre Tipo de Carga </option>
+       		<option value="1">Granos</option> 
+       		<option value="2">Madera</option> 
+       		<option value="3">Animales Vivos</option> 
+		</select>
+
+		<select name="sub_tipo" data-native-menu="false">
+   			<option> Nombre Subtipo de Carga </option>
+       		<option value="1">Granos</option> 
+       		<option value="2">Madera</option> 
+       		<option value="3">Animales Vivos</option> 
+		</select>
+
+		<select name="carga" data-native-menu="false">
+   			<option> Nombre de Carga </option>
+       		<option value="1">Granos</option> 
+       		<option value="2">Madera</option> 
+       		<option value="3">Animales Vivos</option> 
+		</select>
+
+	</div>
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li> <a href="#" data-icon="home">Home</a></li>
+				<li> <a href="#segunda_pantalla" data-icon="location">Ubicacion y Hora</a></li>
+			</ul>
+		</div>	
+	</div>
+	
+</div>
+
+
+<div id="segunda_pantalla" data-role="page">
+
+	<div data-role="header">
+		<h1>Ubicacion y Hora</h1>
+		<div>
+			<img src="geolocalizacion.png" width="420" height="190" />
+		</div>
+	</div>
+
+	<div data-role="content">
+	
+		<ul id="ubicacion_list" data-role="listview" data-filter="true" data-filter-placeholder="¿Buscar Ubicacion?">
+			<li><a href="#item1">¿Donde se encuentra tu carga?</a></li>
+			<li><a href="#item2">¿A donde quieres llevarla?</a></li>
+			<li>Fecha de recogida</li>
+			<li>Rango de horas para recogida</li>
+		</ul>
+	</div>
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li> <a href="#homepage" data-icon="home">Home</a></li>
+				<li> <a href="#tercera_pantalla" data-icon="user">Registrate</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div id="item1" data-role="page">
+
+	<div data-role="header">
+		<h1>Lugar de Recogida</h1>
+		<a href="" data-rel="back">Volver</a>
+		<script type="text/javascript" src="gmaps.js"></script>
+	</div>
+
+	<div data-role="content">
+		<div id="mapa" style="width: 400px; height: 470px;">
+		--- ACA VA NUESTRO MAPA
+	</div>
+	<script type="text/javascript">
+			var divMapa = document.getElementById('mapa');
+			navigator.geolocation.getCurrentPosition(fn_ok, fn_mal );
+			function fn_mal ( ){  }
+			function fn_ok ( rta ){ 
+			var lat = rta.coords.latitude;
+			var lon = rta.coords.longitude;
+
+			var gLatLon = new google.maps.LatLng( lat, lon);
+			var objConfig = {
+				zoom: 17,
+				center: gLatLon
+			}
+			var gMapa = new google.maps.Map( divMapa, objConfig);	
+
+			var objConfigMarker = {
+				position: gLatLon,
+				map: gMapa
+			}
+			var gMarker = new google.maps.Marker( objConfigMarker );
+
+			 }
+
+	</script>
+		
+	</div>
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li> <a href="#" data-icon="check">Guardar</a></li>
+			</ul>
+		</div>
+	</div>
+	
+</div>
+
+<div id="item2" data-role="page">
+
+	<div data-role="header">
+	<h1>Colapsables 2</h1>
+	<a href="" data-rel="back">Volver</a>
+	</div>
+
+	<div data-role="content">
+	<div data-role="collapsible-set">
+		<div data-role="collapsible" data-theme="a">
+		<h3>Carga de Alimentos</h3>
+		<ul>
+			<li>Carnes</li>
+			<li>Granos</li>
+			<li>Bebidad</li>
+		</ul>
+		</div>
+
+		<div data-role="collapsible">
+		<h3>Carga de Alimentos</h3>
+		<ul>
+			<li>Carnes</li>
+			<li>Granos</li>
+			<li>Bebidad</li>
+		</ul>
+		</div>
+
+		<div data-role="collapsible">
+		<h3>Carga de Alimentos</h3>
+		<ul>
+			<li>Carnes</li>
+			<li>Granos</li>
+			<li>Bebidad</li>
+		</ul>
+		</div>
+
+	</div>
+	</div>
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li> <a href="#homepage" data-icon="home">Home</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+<div id="tercera_pantalla" data-role="page">
+
+	<div data-role="header">
+		<h1>Registrate</h1>
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li> <a href="#" data-icon="user">Persona Natural</a></li>
+				<li> <a href="#p_juridica" data-icon="user">Persona Juridica</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div data-role="content">
+		<form id="formulario_natural">
+			<div>
+				<p>Nombre</p> 
+				<input type="text" name="nombre" value="">
+			</div>
+			<div>
+				<p>Numero de Cédula</p>
+				<input type="number" name="cedula" value="">
+			</div>
+			<div>
+				<p>Numero de Celular</p> 
+				<input type="tel" name="celular" value="">
+			</div>
+			<div>
+				<p>Email</p> 
+				<input type="email" name="email" value="">
+			</div>
+			</br>
+			<div>
+				<input name="terminos" type="checkbox" value="" />Acepto términos y condiciones
+			</div>
+		</form>
+	</div>
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li> <a href="#homepage" data-icon="home">Home</a></li>
+				<li> <a href="#" data-icon="check">Guardar</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div id="p_juridica" data-role="page">
+
+	<div data-role="header">
+		<h1>Registrate</h1>
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li> <a href="#tercera_pantalla" data-icon="user">Persona Natural</a></li>
+				<li> <a href="#" data-icon="user">Persona Juridica</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div data-role="content">
+		<form id="formulario_juridica">
+			<div>
+				<p>Razón Social</p> 
+				<input type="text" name="nombre" value="">
+			</div>
+			<div>
+				<p>Nit</p>
+				<input type="number" name="cedula" value="">
+			</div>
+			<div>
+				<p>Numero de Celular</p> 
+				<input type="tel" name="celular" value="">
+			</div>
+			<div>
+				<p>Email</p> 
+				<input type="email" name="email" value="">
+			</div>
+			</br>
+			<div>
+				<input name="terminos" type="checkbox" value="" />Acepto términos y condiciones
+			</div>
+		</form>
+	</div>
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="bottom">
+			<ul>
+				<li> <a href="#homepage" data-icon="home">Home</a></li>
+				<li> <a href="#" data-icon="check">Guardar</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>
